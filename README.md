@@ -1,7 +1,7 @@
 # games
 A repository of games written in different languages.
 
-## List of games (Updated each time a new game is added to this repository)
+## List of games 
 
 1. memorise - A simple card based memory game. Written in Swift. (In progress)
 
