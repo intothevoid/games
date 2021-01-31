@@ -21,7 +21,6 @@ struct EmojiMemoryGameView: View {
         
         .padding()
         .foregroundColor(Color.orange)
-        .font(Font.largeTitle)
     }
 }
 
@@ -29,17 +28,29 @@ struct CardView : View {
     var card: MemoryGame<String>.Card
     
     var body: some View {
-        ZStack {
-            if card.isFaceUp {
-                RoundedRectangle(cornerRadius: 10.0).fill(Color.white)
-                RoundedRectangle(cornerRadius: 10.0).stroke(lineWidth: 3)
-                Text(card.content).font(Font.largeTitle)
-            }
-            else {
-                RoundedRectangle(cornerRadius: 10.0)
-            }
+        GeometryReader { geometry in
+            self.body(for: geometry.size)
         }
     }
+    
+    func body(for size: CGSize) -> some View {
+        ZStack {
+            if card.isFaceUp {
+                RoundedRectangle(cornerRadius: cornerRadius).fill(Color.white)
+                RoundedRectangle(cornerRadius: cornerRadius).stroke(lineWidth: edgeLineWidth)
+                Text(card.content)
+            }
+            else {
+                RoundedRectangle(cornerRadius: cornerRadius )
+            }
+        }
+        .font(Font.system(size: min(size.width, size.height) * fontScaleFactor))
+    }
+    
+    // MARK: Drawing Constants
+    let cornerRadius: CGFloat = 10.0
+    let edgeLineWidth: CGFloat = 3.0
+    let fontScaleFactor: CGFloat = 0.75
 }
 
 struct ContentView_Previews: PreviewProvider {
