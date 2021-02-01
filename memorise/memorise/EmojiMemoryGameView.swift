@@ -53,8 +53,3 @@ struct CardView : View {
     let fontScaleFactor: CGFloat = 0.75
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        EmojiMemoryGameView(viewModel: EmojiMemoryGame())
-    }
-}
